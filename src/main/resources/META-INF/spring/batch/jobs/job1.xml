@@ -5,14 +5,13 @@ xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
 
-  <beans:bean id="succeedingTasklet" class="com.enterra.batch.admin.util.TestTasklet" />
-  <beans:bean id="failingTasklet" class="com.enterra.batch.admin.util.TestTasklet" >
-    <beans:property name="fail" value="true" />
+  <beans:bean id="testTasklet" class="com.enterra.batch.admin.util.TestTasklet" scope="step">
+    <beans:property name="fail" value="#{jobParameters['fail']}" />
   </beans:bean>
 
   <job id="job1">
     <step id="step1">
-      <tasklet ref="succeedingTasklet" />
+      <tasklet ref="testTasklet" />
     </step>
   </job>
 </beans:beans>
