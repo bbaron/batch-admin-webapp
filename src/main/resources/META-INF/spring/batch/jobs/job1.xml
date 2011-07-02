@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/batch"
-xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
 
-  <beans:bean id="testTasklet" class="com.enterra.batch.admin.util.TestTasklet" scope="step">
-    <beans:property name="fail" value="#{jobParameters['fail']?:'false'}" />
-  </beans:bean>
+  <bean id="testTasklet" class="com.enterra.batch.admin.util.TestTasklet" scope="step">
+    <property name="fail" value="#{jobParameters['fail']?:'false'}" />
+  </bean>
 
-  <job id="job1">
+  <bean id="incrementer" class="com.enterra.batch.admin.sample.TrivialJobParametersIncrementer" />
+  
+  <job id="job1" incrementer="incrementer" xmlns="http://www.springframework.org/schema/batch">
     <step id="step1">
       <tasklet ref="testTasklet" />
     </step>
   </job>
-</beans:beans>
+</beans>
