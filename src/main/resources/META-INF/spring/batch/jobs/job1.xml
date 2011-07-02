@@ -6,7 +6,7 @@ xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.
 
 
   <beans:bean id="testTasklet" class="com.enterra.batch.admin.util.TestTasklet" scope="step">
-    <beans:property name="fail" value="#{jobParameters['fail']}" />
+    <beans:property name="fail" value="#{jobParameters['fail']?:'false'}" />
   </beans:bean>
 
   <job id="job1">
