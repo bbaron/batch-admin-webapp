@@ -16,8 +16,15 @@
     <spring.batch.version>2.1.8.RELEASE</spring.batch.version>
     <spring.framework.version>3.0.5.RELEASE</spring.framework.version>
     <spring.integration.version>2.0.0.RELEASE</spring.integration.version>
+    <maven.test.failure.ignore>false</maven.test.failure.ignore>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>com.acme</groupId>
+      <artifactId>product-import</artifactId>
+      <version>1.0.0.SNAPSHOT</version>
+      <scope>runtime</scope>
+    </dependency>
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -150,4 +157,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>

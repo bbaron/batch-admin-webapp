@@ -15,13 +15,11 @@
  */
 package com.enterra.batch.admin.sample;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.TreeSet;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.ListableJobLocator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
@@ -40,7 +38,9 @@ public class JobIntegrationTests {
 	@Test
 	public void testSimpleProperties() throws Exception {
 		assertNotNull(jobLocator);
-		assertEquals("[infinite, job1]", new TreeSet<String>(jobLocator.getJobNames()).toString());
+		Job job = jobLocator.getJob("infinite");
+		assertNotNull(job);
+		assertEquals("infinite", job.getName());
 	}
 
 }
